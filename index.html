@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oleksandr — Web Developer & Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --surface: #111111;
+  --border: #1E1E1E;
+  --border2: #2A2A2A;
+  --text: #D4D4D4;
+  --dim: #666;
+  --white: #F0EDE8;
+  --accent: #E8FF47;
+  --accent2: #C8DF20;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+::selection { background: var(--accent); color: var(--bg); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 24px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: .4s;
+}
+nav.scrolled {
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 60px;
+}
+.logo { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--white); text-decoration: none; letter-spacing: 2px; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--dim); font-size: 13px; letter-spacing: 1px; transition: .3s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px;
+  padding: 10px 24px; border: 1px solid var(--accent); color: var(--accent);
+  text-decoration: none; text-transform: uppercase; transition: .3s;
+}
+.nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: .4;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+}
+.hero-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; width: 100%; }
+.hero-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 40px;
+  opacity: 0; animation: up .8s .2s forwards;
+}
+.hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+h1 {
+  font-size: clamp(52px, 7vw, 108px);
+  font-weight: 800;
+  line-height: 1.0;
+  color: var(--white);
+  letter-spacing: -3px;
+  margin-bottom: 32px;
+  opacity: 0; animation: up .8s .4s forwards;
+}
+h1 .accent { color: var(--accent); }
+h1 .dim { color: var(--dim); font-weight: 400; }
+.hero-sub {
+  font-size: 17px; line-height: 1.7; color: var(--dim);
+  max-width: 500px; margin-bottom: 52px;
+  opacity: 0; animation: up .8s .6s forwards;
+}
+.hero-actions { display: flex; gap: 16px; opacity: 0; animation: up .8s .8s forwards; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 40px; background: var(--accent); color: var(--bg);
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  transition: .3s;
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 40px; border: 1px solid var(--border2); color: var(--white);
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  transition: .3s;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.hero-stats {
+  display: flex; gap: 60px; margin-top: 80px;
+  padding-top: 48px; border-top: 1px solid var(--border);
+  opacity: 0; animation: up .8s 1s forwards;
+}
+.stat-num { font-size: 42px; font-weight: 800; color: var(--white); line-height: 1; }
+.stat-num span { color: var(--accent); }
+.stat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin-top: 6px; }
+
+/* MARQUEE */
+.marquee-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0; overflow: hidden; background: var(--surface); }
+.marquee { display: flex; gap: 0; animation: scroll 20s linear infinite; }
+.marquee-item { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); white-space: nowrap; padding: 0 40px; border-right: 1px solid var(--border); }
+.marquee-item span { color: var(--accent); margin-right: 12px; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* WORK */
+.work { padding: 120px 60px; max-width: 1200px; margin: 0 auto; }
+.section-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.section-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.section-title { font-size: clamp(36px, 4vw, 56px); font-weight: 800; color: var(--white); letter-spacing: -2px; margin-bottom: 64px; line-height: 1.05; }
+
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  transition: .4s;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: .4s;
+}
+.project-card:hover { background: #151515; border-color: var(--border2); transform: translateY(-4px); }
+.project-card:hover::before { transform: scaleX(1); }
+.project-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); letter-spacing: 2px; margin-bottom: 24px; }
+.project-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+.project-desc { font-size: 14px; line-height: 1.7; color: var(--dim); margin-bottom: 28px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px;
+  padding: 5px 12px; border: 1px solid var(--border2); color: var(--dim);
+  text-transform: uppercase;
+}
+.project-arrow {
+  position: absolute; bottom: 48px; right: 48px;
+  font-size: 20px; color: var(--dim); transition: .3s;
+}
+.project-card:hover .project-arrow { color: var(--accent); transform: translate(4px, -4px); }
+.project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.project-live {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+  color: var(--accent); text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+}
+.project-live::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+/* SERVICES */
+.services-section { background: var(--surface); padding: 120px 60px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.service-item {
+  padding: 48px 36px;
+  border: 1px solid var(--border);
+  transition: .3s;
+  background: var(--bg);
+}
+.service-item:hover { border-color: var(--accent); background: var(--surface); }
+.service-icon { width: 48px; height: 48px; margin-bottom: 24px; display: flex; align-items: center; }
+.service-name { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+.service-desc { font-size: 13px; line-height: 1.8; color: var(--dim); margin-bottom: 20px; }
+.service-price { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 1px; }
+
+/* ABOUT */
+.about { padding: 120px 60px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-text h2 { font-size: clamp(36px, 4vw, 52px); font-weight: 800; color: var(--white); letter-spacing: -2px; margin-bottom: 24px; line-height: 1.05; }
+.about-text p { font-size: 15px; line-height: 1.8; color: var(--dim); margin-bottom: 16px; }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+.skill-item { display: flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); letter-spacing: 1px; }
+.skill-item::before { content: '//'; color: var(--accent); }
+.about-card { background: var(--surface); border: 1px solid var(--border); padding: 48px; }
+.about-card-title { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
+.lang-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.lang-item:last-child { border-bottom: none; }
+.lang-name { font-size: 14px; color: var(--white); }
+.lang-level { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); }
+.lang-dots { display: flex; gap: 4px; }
+.dot { width: 6px; height: 6px; background: var(--border2); }
+.dot.filled { background: var(--accent); }
+
+/* CONTACT */
+.contact { background: var(--surface); border-top: 1px solid var(--border); padding: 120px 60px; }
+.contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.contact-text h2 { font-size: clamp(40px, 5vw, 72px); font-weight: 800; color: var(--white); letter-spacing: -3px; line-height: 1.0; margin-bottom: 24px; }
+.contact-text p { font-size: 15px; line-height: 1.8; color: var(--dim); margin-bottom: 40px; }
+.contact-links { display: flex; flex-direction: column; gap: 16px; }
+.contact-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  text-decoration: none; color: var(--white);
+  font-size: 15px; transition: .3s;
+}
+.contact-link:hover { border-color: var(--accent); color: var(--accent); }
+.contact-link-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
+.form-input {
+  background: var(--bg); border: 1px solid var(--border2);
+  padding: 16px 20px; color: var(--white);
+  font-family: 'Syne', sans-serif; font-size: 14px;
+  outline: none; transition: .3s;
+}
+.form-input:focus { border-color: var(--accent); }
+textarea.form-input { resize: none; min-height: 120px; }
+.form-submit {
+  padding: 18px; background: var(--accent); color: var(--bg);
+  border: none; font-family: 'DM Mono', monospace; font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+  transition: .3s; margin-top: 8px;
+}
+.form-submit:hover { background: var(--accent2); }
+
+/* FOOTER */
+footer {
+  padding: 32px 60px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); letter-spacing: 1px; }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); text-decoration: none; letter-spacing: 1px; transition: .3s; }
+.footer-links a:hover { color: var(--accent); }
+
+/* ANIMATIONS */
+@keyframes up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s, transform .7s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 24px; }
+  .work { padding: 80px 24px; }
+  .projects { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: 1; grid-template-columns: 1fr; gap: 24px; }
+  .services-section { padding: 80px 24px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .about { padding: 80px 24px; grid-template-columns: 1fr; }
+  .contact { padding: 80px 24px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  footer { padding: 24px; flex-direction: column; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">BOHDAN<span>.</span>DEV</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for projects</div>
+    <h1>
+      Web Dev<br>
+      <span class="accent">&amp; Automation</span><br>
+      <span class="dim">Engineer</span>
+    </h1>
+    <p class="hero-sub">
+      I build websites where <em style="color:var(--accent);font-style:normal;">you control everything yourself</em> — change prices, photos, text without calling a developer. Plus bots that take bookings and answer clients <em style="color:var(--accent);font-style:normal;">while you sleep.</em>
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">View Work →</a>
+      <a href="#contact" class="btn-ghost">Let's Talk</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">8<span>+</span></div>
+        <div class="stat-label">Projects delivered</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Languages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <div class="marquee-item"><span>→</span> React / Next.js</div>
+    <div class="marquee-item"><span>→</span> Python</div>
+    <div class="marquee-item"><span>→</span> Telegram Bots</div>
+    <div class="marquee-item"><span>→</span> Admin Panels</div>
+    <div class="marquee-item"><span>→</span> Automation</div>
+    <div class="marquee-item"><span>→</span> Node.js</div>
+    <div class="marquee-item"><span>→</span> MongoDB</div>
+    <div class="marquee-item"><span>→</span> AI Integration</div>
+    <div class="marquee-item"><span>→</span> React / Next.js</div>
+    <div class="marquee-item"><span>→</span> Python</div>
+    <div class="marquee-item"><span>→</span> Telegram Bots</div>
+    <div class="marquee-item"><span>→</span> Admin Panels</div>
+    <div class="marquee-item"><span>→</span> Automation</div>
+    <div class="marquee-item"><span>→</span> Node.js</div>
+    <div class="marquee-item"><span>→</span> MongoDB</div>
+    <div class="marquee-item"><span>→</span> AI Integration</div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="section-tag">Selected Work</div>
+  <h2 class="section-title">Projects that<br>got paid</h2>
+
+  <div class="projects">
+
+    <!-- Featured -->
+    <a href="https://www.perfect4you.foo/" target="_blank" class="project-card featured reveal">
+      <div>
+        <div class="project-num">01 / Featured</div>
+        <div class="project-title">Perfect4You — B2B Wholesale</div>
+        <div class="project-desc">Full e-commerce platform for Ukrainian wholesale food supplier. Product catalog with admin panel, order forms, customer filtering by business type, and multi-channel contact system.</div>
+        <div class="project-tags">
+          <div class="tag">Next.js</div>
+          <div class="tag">Admin Panel</div>
+          <div class="tag">E-commerce</div>
+          <div class="tag">Ukraine</div>
+        </div>
+        <div class="project-live">Live site →</div>
+      </div>
+      <div style="background: #151515; border: 1px solid var(--border2); padding: 32px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); line-height: 2;">
+        <div style="color: var(--accent); margin-bottom: 16px;">// Features delivered</div>
+        <div>✓ Product catalog with categories</div>
+        <div>✓ Admin panel — edit content</div>
+        <div>✓ Order form with callback</div>
+        <div>✓ Mobile responsive</div>
+        <div>✓ SEO optimized</div>
+        <div>✓ Viber / Telegram / WhatsApp</div>
+        <div style="margin-top: 20px; color: var(--white);">Client: Ukraine · Paid ✓</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </a>
+
+    <!-- BUDPRO -->
+    <div class="project-card reveal">
+      <div class="project-num">02</div>
+      <div class="project-title">BUDPRO — Construction Warsaw</div>
+      <div class="project-desc">Premium dark-theme website for Ukrainian construction crew in Warsaw. Bilingual (UA/PL), portfolio section, contact forms, and animated hero with real project photos.</div>
+      <div class="project-tags">
+        <div class="tag">HTML/CSS/JS</div>
+        <div class="tag">Bilingual</div>
+        <div class="tag">Construction</div>
+        <div class="tag">Warsaw</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <!-- LUNA -->
+    <div class="project-card reveal">
+      <div class="project-num">03</div>
+      <div class="project-title">LUNA Beauty — Salon Warsaw</div>
+      <div class="project-desc">Beauty salon website with online booking integration, service catalog, staff profiles, and Instagram feed. Designed for the Eastern European beauty market in Poland.</div>
+      <div class="project-tags">
+        <div class="tag">HTML/CSS/JS</div>
+        <div class="tag">Booking</div>
+        <div class="tag">Beauty</div>
+        <div class="tag">Warsaw</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <!-- WIXMART -->
+    <div class="project-card reveal">
+      <div class="project-num">04</div>
+      <div class="project-title">WIXMART — Ukrainian Grocery</div>
+      <div class="project-desc">E-commerce store for Ukrainian food products in Poland. Product listings, cart system, delivery zones map, and multilingual support for Polish and Ukrainian customers.</div>
+      <div class="project-tags">
+        <div class="tag">HTML/CSS/JS</div>
+        <div class="tag">E-commerce</div>
+        <div class="tag">Food</div>
+        <div class="tag">Poland</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <!-- Booking Bot -->
+    <div class="project-card reveal">
+      <div class="project-num">05</div>
+      <div class="project-title">Telegram Booking Bot</div>
+      <div class="project-desc">Automated appointment booking bot for barbershops and beauty salons. Schedule management, automated reminders, admin dashboard, and payment collection via Telegram.</div>
+      <div class="project-tags">
+        <div class="tag">Python</div>
+        <div class="tag">Telegram API</div>
+        <div class="tag">Booking</div>
+        <div class="tag">Automation</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <!-- QR Bot -->
+    <div class="project-card reveal">
+      <div class="project-num">06</div>
+      <div class="project-title">QR Ticket System — Club</div>
+      <div class="project-desc">Two-bot ticket management system for nightclubs. Cryptographically signed QR codes, desktop scanner app (PyQt6), real-time validation, and revenue tracking dashboard.</div>
+      <div class="project-tags">
+        <div class="tag">Python</div>
+        <div class="tag">PyQt6</div>
+        <div class="tag">QR / Crypto</div>
+        <div class="tag">Club Tech</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <div class="section-tag reveal">What I offer</div>
+    <h2 class="section-title reveal">Services &<br>Pricing</h2>
+    <div class="services-grid">
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="service-name">Website + Admin Panel</div>
+        <div class="service-desc">Full website with content management. You edit text, photos, prices yourself — no developer needed after delivery.</div>
+        <div class="service-price">from 1,500 PLN / €350</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="9" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="15" y1="10" x2="15" y2="10"/></svg>
+        </div>
+        <div class="service-name">Telegram Bot</div>
+        <div class="service-desc">Booking bot, order bot, FAQ bot, or custom workflow. Clients interact via Telegram — you get notified instantly.</div>
+        <div class="service-price">from 800 PLN / €200</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="service-name">Automation</div>
+        <div class="service-desc">Automate repetitive tasks: notifications, data collection, reports, integrations between systems. Save hours every week.</div>
+        <div class="service-price">from 500 PLN / €120</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <div class="service-name">E-commerce Store</div>
+        <div class="service-desc">Online store with product catalog, cart, orders management, delivery zones. Ready to sell in 2 weeks.</div>
+        <div class="service-price">from 2,500 PLN / €600</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="service-name">Monthly Support</div>
+        <div class="service-desc">I maintain your site or bot: updates, fixes, new features. Peace of mind — everything always works.</div>
+        <div class="service-price">from 200 PLN / €50 /mo</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="service-name">Custom Project</div>
+        <div class="service-desc">Have something specific in mind? Let's talk. I work with restaurants, salons, shops, and service businesses across Europe.</div>
+        <div class="service-price">Let's discuss</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text reveal">
+    <div class="section-tag">About</div>
+    <h2>Developer based<br>in Warsaw</h2>
+    <p>I'm Bohdan — a full-stack developer and Finance student at Warsaw University of Economics. I build practical digital tools for businesses: websites, bots, and automations.</p>
+    <p>I work with Ukrainian, Russian, Polish, and international businesses across Europe. I understand your market and can communicate directly with your team.</p>
+    <div class="skills-grid">
+      <div class="skill-item">React / Next.js</div>
+      <div class="skill-item">Python</div>
+      <div class="skill-item">Telegram API</div>
+      <div class="skill-item">Node.js</div>
+      <div class="skill-item">MongoDB</div>
+      <div class="skill-item">REST APIs</div>
+      <div class="skill-item">AI Integration</div>
+      <div class="skill-item">Web Scraping</div>
+    </div>
+  </div>
+  <div class="about-card reveal">
+    <div class="about-card-title">// Languages spoken</div>
+    <div class="lang-item">
+      <span class="lang-name">Ukrainian</span>
+      <div class="lang-dots">
+        <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+      </div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">Russian</span>
+      <div class="lang-dots">
+        <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+      </div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">Polish</span>
+      <div class="lang-dots">
+        <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+      </div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">English</span>
+      <div class="lang-dots">
+        <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+      </div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">Italian</span>
+      <div class="lang-dots">
+        <div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+    </div>
+    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border);">
+      <div class="about-card-title">// Based in</div>
+      <div style="font-size: 15px; color: var(--white); margin-top: 8px;">Warsaw, Poland 🇵🇱</div>
+      <div style="font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); margin-top: 4px;">Available remotely worldwide</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-tag">Contact</div>
+      <h2 class="contact-text" style="font-size: clamp(40px, 5vw, 72px); font-weight: 800; color: var(--white); letter-spacing: -3px; line-height: 1.0; margin-bottom: 24px;">Ready to<br>work?</h2>
+      <p style="font-size: 15px; line-height: 1.8; color: var(--dim); margin-bottom: 40px;">I respond within a few hours. Let's discuss your project — first consultation is free.</p>
+      <div class="contact-links">
+        <a href="https://t.me/Nanociganter" class="contact-link" target="_blank">
+          <div>
+            <div class="contact-link-label">Telegram</div>
+            <div>@Nanociganter</div>
+          </div>
+          <span>↗</span>
+        </a>
+
+        <a href="mailto:bohdan.mar@gmail.com" class="contact-link">
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div>bohdan.mar@gmail.com</div>
+          </div>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+      <div class="contact-form reveal">
+      <div class="form-group">
+        <label class="form-label">Your name</label>
+        <input type="text" id="f-name" class="form-input" placeholder="John Smith">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contact (Telegram / Email / Phone)</label>
+        <input type="text" id="f-contact" class="form-input" placeholder="@telegram or email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">What do you need?</label>
+        <textarea id="f-msg" class="form-input" placeholder="Website, bot, automation... tell me about your business"></textarea>
+      </div>
+      <button class="form-submit" id="f-submit" onclick="sendToTelegram()">Send Message →</button>
+      <div id="f-status" style="font-family:'DM Mono',monospace;font-size:12px;margin-top:12px;display:none;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Bohdan — Web Dev & Automation</div>
+  <div class="footer-links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Telegram form
+// ⚠️ ЗАМЕНИ ТОКЕН на новый после @BotFather -> /token
+const TG_TOKEN = 'PASTE_NEW_TOKEN_HERE';
+const TG_CHAT_ID = '6566900012';
+
+async function sendToTelegram() {
+  const name = document.getElementById('f-name').value.trim();
+  const contact = document.getElementById('f-contact').value.trim();
+  const msg = document.getElementById('f-msg').value.trim();
+  const status = document.getElementById('f-status');
+  const btn = document.getElementById('f-submit');
+
+  if (!name || !contact || !msg) {
+    status.style.display = 'block';
+    status.style.color = '#ff6b6b';
+    status.textContent = '// Fill in all fields';
+    return;
+  }
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const text = `🔔 New lead from portfolio\n\nName: ${name}\nContact: ${contact}\n\nMessage:\n${msg}`;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      status.style.display = 'block';
+      status.style.color = 'var(--accent)';
+      status.textContent = '// Message sent! I will reply within a few hours.';
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-contact').value = '';
+      document.getElementById('f-msg').value = '';
+    } else { throw new Error(); }
+  } catch {
+    status.style.display = 'block';
+    status.style.color = '#ff6b6b';
+    status.textContent = '// Error. Write directly: @Nanociganter';
+  }
+  btn.textContent = 'Send Message →';
+  btn.disabled = false;
+}
+</script>
+</body>
+</html>
