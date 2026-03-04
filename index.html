@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bohdan — Websites & Bots for Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f0f0f;
+  --paper:#f5f2ed;
+  --off:#edeae4;
+  --red:#ff3200;
+  --B:2.5px solid var(--ink);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+::selection{background:var(--red);color:#fff}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--ink)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:60px;background:var(--paper);border-bottom:var(--B);
+  display:flex;align-items:stretch;
+}
+.n-logo{display:flex;align-items:center;padding:0 28px;border-right:var(--B);font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.n-logo b{color:var(--red)}
+.n-links{display:flex;align-items:stretch;flex:1}
+.n-links a{display:flex;align-items:center;padding:0 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#666;text-decoration:none;border-right:1px solid #e0dbd3;transition:.15s}
+.n-links a:hover{color:var(--ink);background:var(--off)}
+.n-cta{margin-left:auto;display:flex;align-items:center;padding:0 28px;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-left:var(--B);transition:.15s;white-space:nowrap}
+.n-cta:hover{background:var(--red)}
+
+/* HERO */
+.hero{margin-top:60px;min-height:calc(100svh - 60px);display:grid;grid-template-rows:1fr auto;border-bottom:var(--B)}
+.hero-top{display:grid;grid-template-columns:1fr 220px}
+.hero-left{padding:60px 56px;border-right:var(--B);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.hero-ghost{position:absolute;bottom:-14px;left:-4px;font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,16vw,200px);color:rgba(0,0,0,.07);line-height:1;pointer-events:none;letter-spacing:-4px;white-space:nowrap}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';width:24px;height:2px;background:var(--red)}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(58px,8.5vw,128px);line-height:.92;letter-spacing:-.5px;color:var(--ink);position:relative;z-index:1}
+.hero-h1 em{font-style:normal;color:var(--red)}
+.hero-h1 .out{-webkit-text-stroke:2.5px var(--ink);color:transparent}
+.hero-desc{font-size:18px;line-height:1.65;color:#666;max-width:460px;position:relative;z-index:1}
+.hero-desc b{color:var(--ink)}
+.hero-right{background:var(--ink);display:flex;flex-direction:column}
+.h-stat{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 12px;border-bottom:2px solid #1e1e1e}
+.h-stat:last-child{border-bottom:none}
+.h-stat-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5vw,68px);color:var(--paper);line-height:1}
+.h-stat-n span{color:var(--red)}
+.h-stat-l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;margin-top:5px}
+.hero-bottom{display:flex;border-top:var(--B)}
+.hb-main{flex:1;display:flex;align-items:center;justify-content:center;padding:22px 40px;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-right:var(--B);transition:.15s}
+.hb-main:hover{background:var(--red)}
+.hb-sec{flex:1;display:flex;align-items:center;justify-content:center;padding:22px 40px;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:.15s}
+.hb-sec:hover{background:var(--off)}
+
+/* STRIP */
+.strip{overflow:hidden;border-bottom:var(--B);height:48px;display:flex;align-items:center;background:var(--ink)}
+.strip-track{display:flex;animation:mar 22s linear infinite;white-space:nowrap}
+.si{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#555;padding:0 32px;border-right:1px solid #2a2a2a;white-space:nowrap}
+.si s{color:var(--red);text-decoration:none;margin-right:10px}
+@keyframes mar{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--B)}
+.svc{padding:48px 40px;border-right:var(--B);position:relative;overflow:hidden;transition:.2s}
+.svc:last-child{border-right:none}
+.svc:hover{background:var(--off)}
+.svc-num{display:none}
+.svc-icon{width:34px;height:34px;margin-bottom:20px;display:block}
+.svc-icon svg{width:34px;height:34px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:square;stroke-linejoin:miter}
+.svc-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.4vw,30px);letter-spacing:.5px;margin-bottom:12px;line-height:1.1}
+.svc-desc{font-size:14px;line-height:1.75;color:#777;margin-bottom:20px}
+.svc-price{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--red);letter-spacing:.5px}
+
+/* PROJECTS */
+.sec-head{display:flex;align-items:center;justify-content:space-between;padding:36px 56px;border-bottom:var(--B)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:-1px}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:#999;letter-spacing:2px;text-transform:uppercase}
+.pgrid{display:grid;grid-template-columns:3fr 2fr;border-bottom:var(--B)}
+.pgrid-r{border-left:var(--B);display:grid;grid-template-rows:1fr 1fr}
+.pc{display:block;text-decoration:none;color:inherit;padding:40px 44px;border-bottom:var(--B);position:relative;overflow:hidden;transition:.2s}
+.pc:last-child{border-bottom:none}
+.pc:hover{background:var(--off)}
+.pc.dark{background:var(--ink);color:var(--paper)}
+.pc.dark:hover{background:#181818}
+.pc-ghost{position:absolute;top:-8px;right:12px;font-family:'Bebas Neue',sans-serif;font-size:120px;line-height:1;pointer-events:none;letter-spacing:-2px}
+.pc.dark .pc-ghost{color:rgba(255,255,255,.5)}
+.pc:not(.dark) .pc-ghost{color:rgba(0,0,0,.35)}
+.pc-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--red);margin-bottom:14px}
+.pc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.6vw,34px);letter-spacing:.5px;line-height:1;margin-bottom:10px;color:var(--ink)}
+.pc.feat.dark .pc-title{font-size:clamp(28px,3.2vw,42px);color:#fff}
+.pc.feat:not(.dark) .pc-title{font-size:clamp(28px,3.2vw,42px)}
+.pc.dark .pc-title{color:#fff}
+.pc-desc{font-size:13px;line-height:1.7;color:#444;margin-bottom:18px;max-width:420px}
+.pc.dark .pc-desc{color:#bbb}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pt{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 11px;border:1.5px solid rgba(0,0,0,.3);color:#666}
+.pc.dark .pt{border-color:rgba(255,255,255,.25);color:#aaa}
+.pc-live{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:1px}
+.pc-live::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:bl 2s infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
+.pc-arr{position:absolute;bottom:28px;right:32px;display:flex;color:rgba(0,0,0,.3);transition:.2s}
+.pc.dark .pc-arr{color:rgba(255,255,255,.3)}
+.pc:hover .pc-arr{color:var(--red);transform:translate(4px,-4px)}
+
+/* RED STRIP */
+.rstrip{overflow:hidden;border-top:var(--B);border-bottom:var(--B);height:48px;display:flex;align-items:center;background:var(--red)}
+.rstrip-track{display:flex;animation:mar2 16s linear infinite;white-space:nowrap}
+.ri{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px;color:rgba(0,0,0,.45);padding:0 36px;border-right:1px solid rgba(0,0,0,.15)}
+@keyframes mar2{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--B)}
+.ab-left{padding:56px;border-right:var(--B)}
+.ab-right{padding:56px;background:var(--ink);color:var(--paper)}
+.ab-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.ab-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);line-height:.95;letter-spacing:-1px;margin-bottom:28px}
+.ab-p{font-size:15px;line-height:1.8;color:#777;margin-bottom:12px}
+.ab-p b{color:var(--ink)}
+.lang-item{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.lang-item:last-of-type{border-bottom:none}
+.lang-n{font-size:14px;font-weight:600;color:var(--paper)}
+.lang-dots{display:flex;gap:5px}
+.ld{width:24px;height:4px;border-radius:1px;background:rgba(255,255,255,.2)}
+.ld.on{background:var(--red)}
+.ab-loc{margin-top:28px;padding:18px 20px;border:1px solid rgba(255,255,255,.2)}
+.ab-loc-city{font-size:15px;font-weight:600;color:var(--paper);margin-bottom:3px}
+.ab-loc-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:1fr 1fr}
+.ct-left{padding:56px;border-right:var(--B)}
+.ct-right{padding:56px;background:var(--off)}
+.ct-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,110px);line-height:.88;letter-spacing:-2px;margin-bottom:24px}
+.ct-h2 em{font-style:normal;color:var(--red)}
+.ct-desc{font-size:15px;line-height:1.8;color:#777;margin-bottom:32px}
+.ct-link{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border:var(--B);text-decoration:none;color:var(--ink);margin-bottom:-2.5px;transition:.15s}
+.ct-link:hover{background:var(--ink);color:var(--paper)}
+.ct-link:hover .ct-arr{color:var(--red)}
+.ct-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:3px}
+.ct-val{font-size:14px;font-weight:600}
+.ct-arr{display:flex;align-items:center;transition:.15s}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}
+.fl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999}
+.fi{background:#fff;border:var(--B);border-color:#d8d4cd;padding:12px 15px;color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:14px;outline:none;transition:.15s;border-radius:0;width:100%;-webkit-appearance:none}
+.fi:focus{border-color:var(--ink)}
+.fi::placeholder{color:#bbb}
+textarea.fi{resize:none;min-height:96px}
+.fsub{width:100%;padding:15px;background:var(--ink);color:var(--paper);border:var(--B);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:.15s;margin-top:4px;border-radius:0}
+.fsub:hover{background:var(--red);border-color:var(--red)}
+.fsub:disabled{opacity:.5;cursor:not-allowed}
+.fst{font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:10px;padding:11px 14px;display:none}
+
+/* FOOTER */
+footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;border-top:var(--B)}
+.f-logo{display:flex;align-items:center;padding:0 28px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#666;border-right:2px solid #2a2a2a}
+.f-links{display:flex;flex:1}
+.f-links a{display:flex;align-items:center;padding:0 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#777;text-decoration:none;border-right:1px solid #2a2a2a;transition:.15s}
+.f-links a:hover{color:var(--red)}
+.f-copy{display:flex;align-items:center;padding:0 28px;margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;border-left:2px solid #2a2a2a}
+
+/* REVEAL */
+.r-hidden{opacity:0;transform:translateY(28px);transition:opacity .6s,transform .6s}
+.r-hidden.vis{opacity:1;transform:none}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{height:52px}
+  .n-links{display:none}
+  .n-logo{font-size:20px;padding:0 18px}
+  .n-cta{padding:0 18px;font-size:10px}
+  .hero{min-height:auto}
+  .hero-top{grid-template-columns:1fr}
+  .hero-left{padding:36px 20px 40px;border-right:none}
+  .hero-h1{font-size:clamp(52px,14vw,80px)}
+  .hero-ghost{font-size:72px}
+  .hero-desc{font-size:15px;max-width:100%}
+  .hero-right{flex-direction:row;border-top:var(--B)}
+  .h-stat{border-bottom:none;border-right:2px solid #1e1e1e}
+  .h-stat:last-child{border-right:none}
+  .h-stat-n{font-size:32px}
+  .hero-bottom{flex-direction:column}
+  .hb-main{border-right:none;border-bottom:var(--B);padding:18px}
+  .hb-sec{padding:18px}
+  .services{grid-template-columns:1fr}
+  .svc{border-right:none;border-bottom:var(--B);padding:36px 20px}
+  .svc:last-child{border-bottom:none}
+  .sec-head{padding:28px 20px;flex-direction:column;align-items:flex-start;gap:8px}
+  .pgrid{grid-template-columns:1fr}
+  .pgrid-r{border-left:none;border-top:var(--B);grid-template-rows:auto}
+  .pc{padding:28px 20px}
+  .pc-arr{bottom:20px;right:20px}
+  .about{grid-template-columns:1fr}
+  .ab-left{padding:36px 20px;border-right:none;border-bottom:var(--B)}
+  .ab-right{padding:36px 20px}
+  .contact{grid-template-columns:1fr}
+  .ct-left{padding:36px 20px;border-right:none;border-bottom:var(--B)}
+  .ct-right{padding:36px 20px}
+  .ct-h2{font-size:clamp(56px,18vw,90px)}
+  footer{flex-wrap:wrap}
+  .f-logo{padding:16px 20px;border-right:none;border-bottom:2px solid #1e1e1e;width:100%}
+  .f-links{flex-wrap:wrap}
+  .f-links a{padding:14px 16px}
+  .f-copy{padding:14px 20px;border-left:none;border-top:2px solid #1e1e1e;width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- NAV -->
+<!-- ═══════════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="n-logo">BOHDAN<b>.</b>DEV</a>
+  <div class="n-links">
+    <a href="#what">Services</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="n-cta">Hire me →</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 1. HERO — first thing visitor sees -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="hero-ghost">WEB</div>
+      <div class="hero-tag">Available for projects</div>
+      <div class="hero-h1">
+        WEBSITES<br>
+        &amp; BOTS<br>
+        FOR YOUR<br>
+        <em>BUSINESS</em>
+      </div>
+      <p class="hero-desc">
+        A website <b>you manage yourself</b> — no developer calls.<br>
+        A bot that <b>takes bookings while you sleep.</b>
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="h-stat"><div class="h-stat-n">8<span>+</span></div><div class="h-stat-l">Projects</div></div>
+      <div class="h-stat"><div class="h-stat-n">4</div><div class="h-stat-l">Countries</div></div>
+      <div class="h-stat"><div class="h-stat-n">5</div><div class="h-stat-l">Languages</div></div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <a href="#work" class="hb-main">See projects →</a>
+    <a href="#contact" class="hb-sec">Get in touch</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 2. TECH STRIP -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="strip">
+  <div class="strip-track">
+    <div class="si"><s>✦</s>NEXT.JS</div><div class="si"><s>✦</s>PYTHON</div>
+    <div class="si"><s>✦</s>TELEGRAM BOTS</div><div class="si"><s>✦</s>ADMIN PANELS</div>
+    <div class="si"><s>✦</s>E-COMMERCE</div><div class="si"><s>✦</s>AUTOMATION</div>
+    <div class="si"><s>✦</s>NODE.JS</div><div class="si"><s>✦</s>AI INTEGRATION</div>
+    <div class="si"><s>✦</s>NEXT.JS</div><div class="si"><s>✦</s>PYTHON</div>
+    <div class="si"><s>✦</s>TELEGRAM BOTS</div><div class="si"><s>✦</s>ADMIN PANELS</div>
+    <div class="si"><s>✦</s>E-COMMERCE</div><div class="si"><s>✦</s>AUTOMATION</div>
+    <div class="si"><s>✦</s>NODE.JS</div><div class="si"><s>✦</s>AI INTEGRATION</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 3. SERVICES — what you offer -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="what">
+  <div class="services r">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <span class="svc-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </span>
+      <div class="svc-name">WEBSITE +<br>ADMIN PANEL</div>
+      <p class="svc-desc">You edit prices, photos, text yourself.<br>No developer calls after delivery.<br>Ready in 1–2 weeks.</p>
+      <div class="svc-price">from 1,500 PLN / €350</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <span class="svc-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
+      <div class="svc-name">TELEGRAM<br>BOT</div>
+      <p class="svc-desc">Takes bookings and orders 24/7.<br>Answers clients automatically.<br>You just get notified.</p>
+      <div class="svc-price">from 800 PLN / €200</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <span class="svc-icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </span>
+      <div class="svc-name">E-COMMERCE<br>STORE</div>
+      <p class="svc-desc">Catalog, cart, orders, delivery zones.<br>Customers order online.<br>You see everything in one place.</p>
+      <div class="svc-price">from 2,500 PLN / €600</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 4. PROJECTS — proof of work -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="work">
+  <div class="sec-head r">
+    <div class="sec-title">REAL PROJECTS</div>
+    <div class="sec-sub">// 6 completed</div>
+  </div>
+  <div class="pgrid">
+    <a href="https://www.perfect4you.foo/" target="_blank" class="pc feat dark r">
+      <div class="pc-ghost">01</div>
+      <div class="pc-num">01 / FEATURED · LIVE</div>
+      <div class="pc-title">PERFECT4YOU —<br>B2B WHOLESALE</div>
+      <p class="pc-desc">E-commerce for Ukrainian wholesale food supplier. Catalog, admin panel, order forms — client edits everything themselves.</p>
+      <div class="pc-tags"><div class="pt">Next.js</div><div class="pt">PostgreSQL</div><div class="pt">Supabase</div><div class="pt">Vercel</div></div>
+      <div class="pc-live">perfect4you.foo</div>
+      <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+    </a>
+    <div class="pgrid-r">
+      <div class="pc r">
+        <div class="pc-ghost">02</div>
+        <div class="pc-num">02</div>
+        <div class="pc-title">BUDPRO —<br>CONSTRUCTION</div>
+        <p class="pc-desc">Site for Ukrainian crew in Warsaw. Bilingual UA/PL, portfolio, contact forms.</p>
+        <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">UA/PL</div></div>
+        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      </div>
+      <div class="pc dark r">
+        <div class="pc-ghost">03</div>
+        <div class="pc-num">03</div>
+        <div class="pc-title">LUNA BEAUTY —<br>SALON WARSAW</div>
+        <p class="pc-desc">Salon site with online booking, service catalog, staff profiles.</p>
+        <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">Booking</div></div>
+        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      </div>
+    </div>
+  </div>
+  <div class="pgrid" style="border-top:none">
+    <div class="pgrid-r" style="border-left:none;border-right:var(--B)">
+      <div class="pc r">
+        <div class="pc-ghost">04</div>
+        <div class="pc-num">04</div>
+        <div class="pc-title">WIXMART —<br>GROCERY STORE</div>
+        <p class="pc-desc">Ukrainian food products in Poland. Cart, delivery zones, UA/PL support.</p>
+        <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">E-commerce</div></div>
+        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      </div>
+      <div class="pc dark r">
+        <div class="pc-ghost">05</div>
+        <div class="pc-num">05</div>
+        <div class="pc-title">TELEGRAM<br>BOOKING BOT</div>
+        <p class="pc-desc">Automated bookings for barbershops & salons. Schedule, reminders, payment.</p>
+        <div class="pc-tags"><div class="pt">Python</div><div class="pt">Telegram API</div></div>
+        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      </div>
+    </div>
+    <div class="pc feat r">
+      <div class="pc-ghost">06</div>
+      <div class="pc-num">06</div>
+      <div class="pc-title">QR TICKETS —<br>NIGHTCLUB</div>
+      <p class="pc-desc">Two-bot ticketing system. Crypto-signed QR codes, desktop door scanner, revenue tracking.</p>
+      <div class="pc-tags"><div class="pt">Python</div><div class="pt">PyQt6</div><div class="pt">Cryptography</div></div>
+      <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 5. RED STRIP -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="rstrip">
+  <div class="rstrip-track">
+    <div class="ri">READY IN 2 WEEKS</div><div class="ri">YOU OWN EVERYTHING</div>
+    <div class="ri">MOBILE READY</div><div class="ri">FREE FIRST CALL</div>
+    <div class="ri">UA · RU · PL · EN · IT</div>
+    <div class="ri">READY IN 2 WEEKS</div><div class="ri">YOU OWN EVERYTHING</div>
+    <div class="ri">MOBILE READY</div><div class="ri">FREE FIRST CALL</div>
+    <div class="ri">UA · RU · PL · EN · IT</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 6. ABOUT — who you are (after they've seen your work) -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="about">
+  <div class="about r">
+    <div class="ab-left">
+      <div class="ab-label">About me</div>
+      <h2 class="ab-h2">BOHDAN,<br>WARSAW.</h2>
+      <p class="ab-p">Full-stack developer and Finance student. I build digital tools for businesses — websites, bots, automations.</p>
+      <p class="ab-p"><b>I speak your language</b> — Ukrainian, Russian, Polish, English. I understand your market and your clients.</p>
+    </div>
+    <div class="ab-right">
+      <div class="ab-label">// Languages</div>
+      <div class="lang-item"><span class="lang-n">Ukrainian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
+      <div class="lang-item"><span class="lang-n">Russian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
+      <div class="lang-item"><span class="lang-n">Polish</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
+      <div class="lang-item"><span class="lang-n">English</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
+      <div class="lang-item"><span class="lang-n">Italian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld"></div><div class="ld"></div><div class="ld"></div></div></div>
+      <div class="ab-loc"><div class="ab-loc-city">📍 Warsaw, Poland</div><div class="ab-loc-sub">Working remotely across Europe</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 7. CONTACT — last = call to action -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="contact r">
+    <div class="ct-left">
+      <div class="ab-label">Contact</div>
+      <div class="ct-h2">LET'S<br>BUILD<br><em>IT.</em></div>
+      <p class="ct-desc">First call is free. Tell me about your business — I'll tell you exactly what you need and how much it costs.</p>
+      <a href="https://t.me/f0urtharrancaar" class="ct-link" target="_blank">
+        <div><div class="ct-lbl">Telegram</div><div class="ct-val">@f0urtharrancaar</div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
+      </a>
+      <a href="mailto:bohdan.mar@gmail.com" class="ct-link">
+        <div><div class="ct-lbl">Email</div><div class="ct-val">bohdan.mar@gmail.com</div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
+      </a>
+    </div>
+    <div class="ct-right">
+      <div class="fg"><label class="fl">Your name</label><input type="text" id="fn" class="fi" placeholder="Anna Kowalska"></div>
+      <div class="fg"><label class="fl">What do you need?</label><textarea id="fm" class="fi" placeholder="I have a restaurant / salon / shop..."></textarea></div>
+      <button class="fsub" id="fsb" onclick="sendTG()">Send message →</button>
+      <div id="fst" class="fst"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="f-logo">BOHDAN.DEV</div>
+  <div class="f-links">
+    <a href="#what">Services</a><a href="#work">Work</a><a href="#contact">Contact</a>
+  </div>
+  <div class="f-copy">© 2026</div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════
+// TELEGRAM FORM (via Cloudflare Worker)
+// ═══════════════════════════════════════════════
+
+const WORKER_URL = 'https://portfolio-form.bohdan-mar.workers.dev';
+
+async function sendTG(){
+  const n = document.getElementById('fn').value.trim();
+  const m = document.getElementById('fm').value.trim();
+  const st = document.getElementById('fst');
+  const btn = document.getElementById('fsb');
+
+  if(!n || !m){
+    st.style.cssText = 'display:block;background:#fff0f0;color:#c00;border:2px solid #fcc;padding:11px 14px';
+    st.textContent = 'Please fill in all fields';
+    return;
+  }
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  st.style.display = 'none';
+
+  try {
+    const r = await fetch(WORKER_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name: n, message: m})
+    });
+    const data = await r.json();
+
+    if(data.ok){
+      st.style.cssText = 'display:block;background:#f0fff4;color:#166534;border:2px solid #bbf7d0;padding:11px 14px';
+      st.textContent = '✓ Message sent! I\'ll reply within 24 hours.';
+      document.getElementById('fn').value = '';
+      document.getElementById('fm').value = '';
+    } else {
+      throw new Error('API error');
+    }
+  } catch(e) {
+    st.style.cssText = 'display:block;background:#fff0f0;color:#c00;border:2px solid #fcc;padding:11px 14px';
+    st.textContent = 'Error sending. Try Telegram or email instead.';
+  }
+
+  btn.textContent = 'Send message →';
+  btn.disabled = false;
+}
+
+// ═══════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════
+const revealEls = document.querySelectorAll('.r');
+revealEls.forEach(el => el.classList.add('r-hidden'));
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('vis');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1});
+
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
