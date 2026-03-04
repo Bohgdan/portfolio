@@ -30,16 +30,16 @@ nav{
 .n-logo{display:flex;align-items:center;padding:0 28px;border-right:var(--B);font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--ink);text-decoration:none;white-space:nowrap}
 .n-logo b{color:var(--red)}
 .n-links{display:flex;align-items:stretch;flex:1}
-.n-links a{display:flex;align-items:center;padding:0 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;text-decoration:none;border-right:1px solid #e0dbd3;transition:.15s}
+.n-links a{display:flex;align-items:center;padding:0 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#666;text-decoration:none;border-right:1px solid #e0dbd3;transition:.15s}
 .n-links a:hover{color:var(--ink);background:var(--off)}
 .n-cta{margin-left:auto;display:flex;align-items:center;padding:0 28px;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-left:var(--B);transition:.15s;white-space:nowrap}
 .n-cta:hover{background:var(--red)}
 
 /* HERO */
-.hero{min-height:calc(100svh - 60px);display:grid;grid-template-rows:1fr auto;border-bottom:var(--B)}
+.hero{margin-top:60px;min-height:calc(100svh - 60px);display:grid;grid-template-rows:1fr auto;border-bottom:var(--B)}
 .hero-top{display:grid;grid-template-columns:1fr 220px}
 .hero-left{padding:60px 56px;border-right:var(--B);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.hero-ghost{position:absolute;bottom:-14px;left:-4px;font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,16vw,200px);color:rgba(0,0,0,.045);line-height:1;pointer-events:none;letter-spacing:-4px;white-space:nowrap}
+.hero-ghost{position:absolute;bottom:-14px;left:-4px;font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,16vw,200px);color:rgba(0,0,0,.07);line-height:1;pointer-events:none;letter-spacing:-4px;white-space:nowrap}
 .hero-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px}
 .hero-tag::before{content:'';width:24px;height:2px;background:var(--red)}
 .hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(58px,8.5vw,128px);line-height:.92;letter-spacing:-.5px;color:var(--ink);position:relative;z-index:1}
@@ -62,7 +62,7 @@ nav{
 /* STRIP */
 .strip{overflow:hidden;border-bottom:var(--B);height:48px;display:flex;align-items:center;background:var(--ink)}
 .strip-track{display:flex;animation:mar 22s linear infinite;white-space:nowrap}
-.si{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#2a2a2a;padding:0 32px;border-right:1px solid #1e1e1e;white-space:nowrap}
+.si{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#555;padding:0 32px;border-right:1px solid #2a2a2a;white-space:nowrap}
 .si s{color:var(--red);text-decoration:none;margin-right:10px}
 @keyframes mar{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -71,7 +71,7 @@ nav{
 .svc{padding:48px 40px;border-right:var(--B);position:relative;overflow:hidden;transition:.2s}
 .svc:last-child{border-right:none}
 .svc:hover{background:var(--off)}
-.svc-num{font-family:'Bebas Neue',sans-serif;font-size:84px;color:rgba(0,0,0,.05);line-height:1;margin-bottom:-20px;pointer-events:none}
+.svc-num{display:none}
 .svc-icon{width:34px;height:34px;margin-bottom:20px;display:block}
 .svc-icon svg{width:34px;height:34px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:square;stroke-linejoin:miter}
 .svc-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.4vw,30px);letter-spacing:.5px;margin-bottom:12px;line-height:1.1}
@@ -89,48 +89,49 @@ nav{
 .pc:hover{background:var(--off)}
 .pc.dark{background:var(--ink);color:var(--paper)}
 .pc.dark:hover{background:#181818}
-.pc-ghost{position:absolute;top:0;right:12px;font-family:'Bebas Neue',sans-serif;font-size:100px;line-height:1;pointer-events:none;letter-spacing:-2px}
-.pc.dark .pc-ghost{color:rgba(255,255,255,.05)}
-.pc:not(.dark) .pc-ghost{color:rgba(0,0,0,.05)}
+.pc-ghost{position:absolute;top:-8px;right:12px;font-family:'Bebas Neue',sans-serif;font-size:120px;line-height:1;pointer-events:none;letter-spacing:-2px}
+.pc.dark .pc-ghost{color:rgba(255,255,255,.5)}
+.pc:not(.dark) .pc-ghost{color:rgba(0,0,0,.35)}
 .pc-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--red);margin-bottom:14px}
 .pc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.6vw,34px);letter-spacing:.5px;line-height:1;margin-bottom:10px;color:var(--ink)}
-.pc.feat .pc-title{font-size:clamp(28px,3.2vw,42px);color:#fff}
+.pc.feat.dark .pc-title{font-size:clamp(28px,3.2vw,42px);color:#fff}
+.pc.feat:not(.dark) .pc-title{font-size:clamp(28px,3.2vw,42px)}
 .pc.dark .pc-title{color:#fff}
 .pc-desc{font-size:13px;line-height:1.7;color:#444;margin-bottom:18px;max-width:420px}
 .pc.dark .pc-desc{color:#bbb}
 .pc-tags{display:flex;flex-wrap:wrap;gap:6px}
-.pt{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 11px;border:1.5px solid rgba(0,0,0,.15);color:#999}
+.pt{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 11px;border:1.5px solid rgba(0,0,0,.3);color:#666}
 .pc.dark .pt{border-color:rgba(255,255,255,.25);color:#aaa}
 .pc-live{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:1px}
 .pc-live::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:bl 2s infinite}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
-.pc-arr{position:absolute;bottom:28px;right:32px;display:flex;color:rgba(0,0,0,.15);transition:.2s}
-.pc.dark .pc-arr{color:rgba(255,255,255,.1)}
+.pc-arr{position:absolute;bottom:28px;right:32px;display:flex;color:rgba(0,0,0,.3);transition:.2s}
+.pc.dark .pc-arr{color:rgba(255,255,255,.3)}
 .pc:hover .pc-arr{color:var(--red);transform:translate(4px,-4px)}
 
 /* RED STRIP */
 .rstrip{overflow:hidden;border-top:var(--B);border-bottom:var(--B);height:48px;display:flex;align-items:center;background:var(--red)}
 .rstrip-track{display:flex;animation:mar2 16s linear infinite;white-space:nowrap}
-.ri{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px;color:rgba(0,0,0,.2);padding:0 36px;border-right:1px solid rgba(0,0,0,.15)}
+.ri{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px;color:rgba(0,0,0,.45);padding:0 36px;border-right:1px solid rgba(0,0,0,.15)}
 @keyframes mar2{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ABOUT */
-.about{display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--B);margin-top:60px}
+.about{display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--B)}
 .ab-left{padding:56px;border-right:var(--B)}
 .ab-right{padding:56px;background:var(--ink);color:var(--paper)}
 .ab-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px}
 .ab-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);line-height:.95;letter-spacing:-1px;margin-bottom:28px}
 .ab-p{font-size:15px;line-height:1.8;color:#777;margin-bottom:12px}
 .ab-p b{color:var(--ink)}
-.lang-item{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.lang-item{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.15)}
 .lang-item:last-of-type{border-bottom:none}
 .lang-n{font-size:14px;font-weight:600;color:var(--paper)}
 .lang-dots{display:flex;gap:5px}
-.ld{width:24px;height:4px;border-radius:1px;background:rgba(255,255,255,.1)}
+.ld{width:24px;height:4px;border-radius:1px;background:rgba(255,255,255,.2)}
 .ld.on{background:var(--red)}
-.ab-loc{margin-top:28px;padding:18px 20px;border:1px solid rgba(255,255,255,.08)}
+.ab-loc{margin-top:28px;padding:18px 20px;border:1px solid rgba(255,255,255,.2)}
 .ab-loc-city{font-size:15px;font-weight:600;color:var(--paper);margin-bottom:3px}
-.ab-loc-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:#444}
+.ab-loc-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888}
 
 /* CONTACT */
 .contact{display:grid;grid-template-columns:1fr 1fr}
@@ -158,14 +159,15 @@ textarea.fi{resize:none;min-height:96px}
 
 /* FOOTER */
 footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;border-top:var(--B)}
-.f-logo{display:flex;align-items:center;padding:0 28px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#333;border-right:2px solid #1e1e1e}
+.f-logo{display:flex;align-items:center;padding:0 28px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#666;border-right:2px solid #2a2a2a}
 .f-links{display:flex;flex:1}
-.f-links a{display:flex;align-items:center;padding:0 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#444;text-decoration:none;border-right:1px solid #1e1e1e;transition:.15s}
+.f-links a{display:flex;align-items:center;padding:0 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#777;text-decoration:none;border-right:1px solid #2a2a2a;transition:.15s}
 .f-links a:hover{color:var(--red)}
-.f-copy{display:flex;align-items:center;padding:0 28px;margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:#333;border-left:2px solid #1e1e1e}
+.f-copy{display:flex;align-items:center;padding:0 28px;margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;border-left:2px solid #2a2a2a}
 
 /* REVEAL */
-
+.r-hidden{opacity:0;transform:translateY(28px);transition:opacity .6s,transform .6s}
+.r-hidden.vis{opacity:1;transform:none}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -195,7 +197,6 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   .pc{padding:28px 20px}
   .pc-arr{bottom:20px;right:20px}
   .about{grid-template-columns:1fr}
-  .about{margin-top:52px}
   .ab-left{padding:36px 20px;border-right:none;border-bottom:var(--B)}
   .ab-right{padding:36px 20px}
   .contact{grid-template-columns:1fr}
@@ -212,6 +213,9 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════ -->
+<!-- NAV -->
+<!-- ═══════════════════════════════════════════════ -->
 <nav>
   <a href="#" class="n-logo">BOHDAN<b>.</b>DEV</a>
   <div class="n-links">
@@ -223,28 +227,9 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   <a href="#contact" class="n-cta">Hire me →</a>
 </nav>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about r">
-    <div class="ab-left">
-      <div class="ab-label">About</div>
-      <h2 class="ab-h2">BOHDAN.<br>WARSAW.</h2>
-      <p class="ab-p">Full-stack developer and Finance student. I build digital tools for businesses — websites, bots, automations.</p>
-      <p class="ab-p"><b>I speak your language</b> — Ukrainian, Russian, Polish, English. I understand your market and your clients.</p>
-    </div>
-    <div class="ab-right">
-      <div class="ab-label">// Languages</div>
-      <div class="lang-item"><span class="lang-n">Ukrainian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
-      <div class="lang-item"><span class="lang-n">Russian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
-      <div class="lang-item"><span class="lang-n">Polish</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
-      <div class="lang-item"><span class="lang-n">English</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
-      <div class="lang-item"><span class="lang-n">Italian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld"></div><div class="ld"></div><div class="ld"></div></div></div>
-      <div class="ab-loc"><div class="ab-loc-city">📍 Warsaw, Poland</div><div class="ab-loc-sub">Working remotely across Europe</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HERO -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 1. HERO — first thing visitor sees -->
+<!-- ═══════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-top">
     <div class="hero-left">
@@ -273,7 +258,9 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
 </section>
 
-<!-- TECH STRIP -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 2. TECH STRIP -->
+<!-- ═══════════════════════════════════════════════ -->
 <div class="strip">
   <div class="strip-track">
     <div class="si"><s>✦</s>NEXT.JS</div><div class="si"><s>✦</s>PYTHON</div>
@@ -287,7 +274,9 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
 </div>
 
-<!-- WHAT I DO -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 3. SERVICES — what you offer -->
+<!-- ═══════════════════════════════════════════════ -->
 <section id="what">
   <div class="services r">
     <div class="svc">
@@ -320,7 +309,9 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 4. PROJECTS — proof of work -->
+<!-- ═══════════════════════════════════════════════ -->
 <section id="work">
   <div class="sec-head r">
     <div class="sec-title">REAL PROJECTS</div>
@@ -385,7 +376,9 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
 </section>
 
-<!-- RED STRIP -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 5. RED STRIP -->
+<!-- ═══════════════════════════════════════════════ -->
 <div class="rstrip">
   <div class="rstrip-track">
     <div class="ri">READY IN 2 WEEKS</div><div class="ri">YOU OWN EVERYTHING</div>
@@ -397,7 +390,32 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
 </div>
 
-<!-- CONTACT -->
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 6. ABOUT — who you are (after they've seen your work) -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="about">
+  <div class="about r">
+    <div class="ab-left">
+      <div class="ab-label">About me</div>
+      <h2 class="ab-h2">BOHDAN,<br>WARSAW.</h2>
+      <p class="ab-p">Full-stack developer and Finance student. I build digital tools for businesses — websites, bots, automations.</p>
+      <p class="ab-p"><b>I speak your language</b> — Ukrainian, Russian, Polish, English. I understand your market and your clients.</p>
+    </div>
+    <div class="ab-right">
+      <div class="ab-label">// Languages</div>
+      <div class="lang-item"><span class="lang-n">Ukrainian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
+      <div class="lang-item"><span class="lang-n">Russian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
+      <div class="lang-item"><span class="lang-n">Polish</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
+      <div class="lang-item"><span class="lang-n">English</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
+      <div class="lang-item"><span class="lang-n">Italian</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld"></div><div class="ld"></div><div class="ld"></div></div></div>
+      <div class="ab-loc"><div class="ab-loc-city">📍 Warsaw, Poland</div><div class="ab-loc-sub">Working remotely across Europe</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 7. CONTACT — last = call to action -->
+<!-- ═══════════════════════════════════════════════ -->
 <section id="contact">
   <div class="contact r">
     <div class="ct-left">
@@ -407,8 +425,8 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
       <a href="https://t.me/f0urtharrancaar" class="ct-link" target="_blank">
         <div><div class="ct-lbl">Telegram</div><div class="ct-val">@f0urtharrancaar</div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
       </a>
-      <a href="/cdn-cgi/l/email-protection#3b5954535f5a5515565a497b5c565a525715585456" class="ct-link">
-        <div><div class="ct-lbl">Email</div><div class="ct-val"><span class="__cf_email__" data-cfemail="3d5f5255595c5313505c4f7d5a505c5451135e5250">[email&#160;protected]</span></div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
+      <a href="mailto:bohdan.mar@gmail.com" class="ct-link">
+        <div><div class="ct-lbl">Email</div><div class="ct-val">bohdan.mar@gmail.com</div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
       </a>
     </div>
     <div class="ct-right">
@@ -420,18 +438,23 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════ -->
 <footer>
   <div class="f-logo">BOHDAN.DEV</div>
   <div class="f-links">
     <a href="#what">Services</a><a href="#work">Work</a><a href="#contact">Contact</a>
   </div>
-  <div class="f-copy">© 2025</div>
+  <div class="f-copy">© 2026</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+// ═══════════════════════════════════════════════
+// TELEGRAM FORM
+// ═══════════════════════════════════════════════
 
-
-// ⚠️ Replace with your new bot token from @BotFather
+// ⚠️ Replace with your bot token from @BotFather
 const TK = 'PASTE_NEW_TOKEN_HERE';
 const CH = '6566900012';
 
@@ -440,16 +463,60 @@ async function sendTG(){
   const m = document.getElementById('fm').value.trim();
   const st = document.getElementById('fst');
   const btn = document.getElementById('fsb');
+
   if(!n || !m){
     st.style.cssText = 'display:block;background:#fff0f0;color:#c00;border:2px solid #fcc;padding:11px 14px';
-    st.textContent = 'Please fill in all fields'; return;
+    st.textContent = 'Please fill in all fields';
+    return;
   }
-  btn.textContent = 'Sending...'; btn.disabled = true; st.style.display = 'none';
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  st.style.display = 'none';
+
   const txt = `🔔 New lead\n\n👤 ${n}\n\n💬 ${m}`;
+
   try {
     const r = await fetch(`https://api.telegram.org/bot${TK}/sendMessage`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({chat_id: CH, text: txt})
     });
-    if((await r.json()).ok){
-      st.style.cssText = 'display:block;background:#f0fff4;color:#166534;
+    const data = await r.json();
+
+    if(data.ok){
+      st.style.cssText = 'display:block;background:#f0fff4;color:#166534;border:2px solid #bbf7d0;padding:11px 14px';
+      st.textContent = '✓ Message sent! I\'ll reply within 24 hours.';
+      document.getElementById('fn').value = '';
+      document.getElementById('fm').value = '';
+    } else {
+      throw new Error('Telegram API error');
+    }
+  } catch(e) {
+    st.style.cssText = 'display:block;background:#fff0f0;color:#c00;border:2px solid #fcc;padding:11px 14px';
+    st.textContent = 'Error sending. Try Telegram or email instead.';
+  }
+
+  btn.textContent = 'Send message →';
+  btn.disabled = false;
+}
+
+// ═══════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════
+const revealEls = document.querySelectorAll('.r');
+revealEls.forEach(el => el.classList.add('r-hidden'));
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('vis');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1});
+
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
