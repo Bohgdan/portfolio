@@ -451,12 +451,10 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
 
 <script>
 // ═══════════════════════════════════════════════
-// TELEGRAM FORM
+// TELEGRAM FORM (via Cloudflare Worker)
 // ═══════════════════════════════════════════════
 
-// ⚠️ Replace with your bot token from @BotFather
-const TK = 'PASTE_NEW_TOKEN_HERE';
-const CH = '6566900012';
+const WORKER_URL = 'https://portfolio-form.bohdan-mar.workers.dev/';
 
 async function sendTG(){
   const n = document.getElementById('fn').value.trim();
@@ -474,13 +472,11 @@ async function sendTG(){
   btn.disabled = true;
   st.style.display = 'none';
 
-  const txt = `🔔 New lead\n\n👤 ${n}\n\n💬 ${m}`;
-
   try {
-    const r = await fetch(`https://api.telegram.org/bot${TK}/sendMessage`, {
+    const r = await fetch(WORKER_URL, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({chat_id: CH, text: txt})
+      body: JSON.stringify({name: n, message: m})
     });
     const data = await r.json();
 
@@ -490,7 +486,7 @@ async function sendTG(){
       document.getElementById('fn').value = '';
       document.getElementById('fm').value = '';
     } else {
-      throw new Error('Telegram API error');
+      throw new Error('API error');
     }
   } catch(e) {
     st.style.cssText = 'display:block;background:#fff0f0;color:#c00;border:2px solid #fcc;padding:11px 14px';
