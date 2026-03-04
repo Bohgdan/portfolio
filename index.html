@@ -95,11 +95,12 @@ nav{
 .pc-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--red);margin-bottom:14px}
 .pc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.6vw,34px);letter-spacing:.5px;line-height:1;margin-bottom:10px;color:var(--ink)}
 .pc.feat .pc-title{font-size:clamp(28px,3.2vw,42px);color:#fff}
-.pc-desc{font-size:13px;line-height:1.7;color:#888;margin-bottom:18px;max-width:420px}
-.pc.dark .pc-desc{color:#555}
+.pc.dark .pc-title{color:#fff}
+.pc-desc{font-size:13px;line-height:1.7;color:#444;margin-bottom:18px;max-width:420px}
+.pc.dark .pc-desc{color:#bbb}
 .pc-tags{display:flex;flex-wrap:wrap;gap:6px}
 .pt{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 11px;border:1.5px solid rgba(0,0,0,.15);color:#999}
-.pc.dark .pt{border-color:rgba(255,255,255,.1);color:#555}
+.pc.dark .pt{border-color:rgba(255,255,255,.25);color:#aaa}
 .pc-live{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:1px}
 .pc-live::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:bl 2s infinite}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
@@ -406,13 +407,12 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
       <a href="https://t.me/f0urtharrancaar" class="ct-link" target="_blank">
         <div><div class="ct-lbl">Telegram</div><div class="ct-val">@f0urtharrancaar</div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
       </a>
-      <a href="mailto:bohdan.mar@gmail.com" class="ct-link">
-        <div><div class="ct-lbl">Email</div><div class="ct-val">bohdan.mar@gmail.com</div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
+      <a href="/cdn-cgi/l/email-protection#3b5954535f5a5515565a497b5c565a525715585456" class="ct-link">
+        <div><div class="ct-lbl">Email</div><div class="ct-val"><span class="__cf_email__" data-cfemail="3d5f5255595c5313505c4f7d5a505c5451135e5250">[email&#160;protected]</span></div></div><span class="ct-arr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg></span>
       </a>
     </div>
     <div class="ct-right">
       <div class="fg"><label class="fl">Your name</label><input type="text" id="fn" class="fi" placeholder="Anna Kowalska"></div>
-      <div class="fg"><label class="fl">Contact (Telegram / Email / Phone)</label><input type="text" id="fc" class="fi" placeholder="@telegram or email"></div>
       <div class="fg"><label class="fl">What do you need?</label><textarea id="fm" class="fi" placeholder="I have a restaurant / salon / shop..."></textarea></div>
       <button class="fsub" id="fsb" onclick="sendTG()">Send message →</button>
       <div id="fst" class="fst"></div>
@@ -428,7 +428,7 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   <div class="f-copy">© 2025</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
 
 // ⚠️ Replace with your new bot token from @BotFather
@@ -437,25 +437,19 @@ const CH = '6566900012';
 
 async function sendTG(){
   const n = document.getElementById('fn').value.trim();
-  const c = document.getElementById('fc').value.trim();
   const m = document.getElementById('fm').value.trim();
   const st = document.getElementById('fst');
   const btn = document.getElementById('fsb');
-  if(!n || !c || !m){
+  if(!n || !m){
     st.style.cssText = 'display:block;background:#fff0f0;color:#c00;border:2px solid #fcc;padding:11px 14px';
     st.textContent = 'Please fill in all fields'; return;
   }
   btn.textContent = 'Sending...'; btn.disabled = true; st.style.display = 'none';
-  const txt = `🔔 New lead\n\n👤 ${n}\n📱 ${c}\n\n💬 ${m}`;
+  const txt = `🔔 New lead\n\n👤 ${n}\n\n💬 ${m}`;
   try {
     const r = await fetch(`https://api.telegram.org/bot${TK}/sendMessage`, {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({chat_id: CH, text: txt})
     });
     if((await r.json()).ok){
-      st.style.cssText = 'display:block;background:#f0fff4;color:#166534;border:2px solid #bbf7d0;padding:11px 14px';
-      st.textContent = "✓ Sent! I'll reply within a few hours.";
-      ['fn','fc','fm'].forEach(id => document.getElementById(id).value = '');
-    } else throw 0;
-  } catch {
-    st.style.cssText =
+      st.style.cssText = 'display:block;background:#f0fff4;color:#166534;
