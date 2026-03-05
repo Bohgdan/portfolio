@@ -112,6 +112,9 @@ nav{
 .pc-arr{position:absolute;bottom:28px;right:32px;display:flex;color:rgba(0,0,0,.3);transition:.2s}
 .pc.dark .pc-arr{color:rgba(255,255,255,.3)}
 .pc:hover .pc-arr{color:var(--red);transform:translate(4px,-4px)}
+.pc-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:.08;transition:.3s;z-index:0}
+.pc:hover .pc-bg{opacity:.12}
+.pc>*{position:relative;z-index:1}
 
 /* RED STRIP */
 .rstrip{overflow:hidden;border-top:var(--B);border-bottom:var(--B);height:48px;display:flex;align-items:center;background:var(--red)}
@@ -319,10 +322,10 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
 <section id="work">
   <div class="sec-head r">
     <div class="sec-title">REAL PROJECTS</div>
-    <div class="sec-sub">// 6 completed</div>
+    <div class="sec-sub">// 5 completed</div>
   </div>
   <div class="pgrid">
-    <a href="https://www.perfect4you.foo/" target="_blank" class="pc feat dark r">
+    <a href="https://www.perfect4you.foo/" target="_blank" class="pc feat dark r" style="background-image:linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)), url('https://www.perfect4you.foo/og-image.jpg');background-size:cover;background-position:center">
       <div class="pc-ghost">01</div>
       <div class="pc-num">01 / FEATURED · LIVE</div>
       <div class="pc-title">PERFECT4YOU —<br>B2B WHOLESALE</div>
@@ -332,7 +335,7 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
       <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
     </a>
     <div class="pgrid-r">
-      <a href="http://miya-demo.me/budpro/" target="_blank" class="pc r">
+      <a href="http://miya-demo.me/budpro/" target="_blank" class="pc r" style="background-image:linear-gradient(rgba(245,242,237,.92), rgba(245,242,237,.92)), url('http://miya-demo.me/budpro/og-preview.jpg');background-size:cover;background-position:center">
         <div class="pc-ghost">02</div>
         <div class="pc-num">02</div>
         <div class="pc-title">BUDPRO —<br>CONSTRUCTION</div>
@@ -352,17 +355,9 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
   <div class="pgrid" style="border-top:none">
     <div class="pgrid-r" style="border-left:none;border-right:var(--B)">
-      <div class="pc r">
+      <div class="pc dark r">
         <div class="pc-ghost">04</div>
         <div class="pc-num">04</div>
-        <div class="pc-title">WIXMART —<br>GROCERY STORE</div>
-        <p class="pc-desc">Ukrainian food products in Poland. Cart, delivery zones, UA/PL support.</p>
-        <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">E-commerce</div></div>
-        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
-      </div>
-      <div class="pc dark r">
-        <div class="pc-ghost">05</div>
-        <div class="pc-num">05</div>
         <div class="pc-title">TELEGRAM<br>BOOKING BOT</div>
         <p class="pc-desc">Automated bookings for barbershops & salons. Schedule, reminders, payment.</p>
         <div class="pc-tags"><div class="pt">Python</div><div class="pt">Telegram API</div></div>
@@ -370,8 +365,8 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
       </div>
     </div>
     <div class="pc feat r">
-      <div class="pc-ghost">06</div>
-      <div class="pc-num">06</div>
+      <div class="pc-ghost">05</div>
+      <div class="pc-num">05</div>
       <div class="pc-title">QR TICKETS —<br>NIGHTCLUB</div>
       <p class="pc-desc">Two-bot ticketing system. Crypto-signed QR codes, desktop door scanner, revenue tracking.</p>
       <div class="pc-tags"><div class="pt">Python</div><div class="pt">PyQt6</div><div class="pt">Cryptography</div></div>
