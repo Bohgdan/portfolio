@@ -101,6 +101,9 @@ nav{
 .pc.feat.dark .pc-title{font-size:clamp(28px,3.2vw,42px);color:#fff}
 .pc.feat:not(.dark) .pc-title{font-size:clamp(28px,3.2vw,42px)}
 .pc.dark .pc-title{color:#fff}
+.pc.feat.dark{background-image:url("https://image.thum.io/get/width/1280/https://www.perfect4you.foo/");background-size:cover;background-position:top center;position:relative}
+.pc-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.72);z-index:0}
+.pc.feat.dark > *:not(.pc-overlay){position:relative;z-index:1}
 .pc-desc{font-size:13px;line-height:1.7;color:#444;margin-bottom:18px;max-width:420px}
 .pc.dark .pc-desc{color:#bbb}
 .pc-tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -323,6 +326,7 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   </div>
   <div class="pgrid">
     <a href="https://www.perfect4you.foo/" target="_blank" class="pc feat dark r">
+      <div class="pc-overlay"></div>
       <div class="pc-ghost">01</div>
       <div class="pc-num">01 / FEATURED · LIVE</div>
       <div class="pc-title">PERFECT4YOU —<br>B2B WHOLESALE</div>
