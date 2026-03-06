@@ -73,8 +73,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:var(-
 .sec-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase}
 .pgrid{display:grid;grid-template-columns:3fr 2fr;border-bottom:var(--B)}
 .pgrid-r{border-left:var(--B);display:grid;grid-template-rows:1fr 1fr}
-.pc{display:block;text-decoration:none;color:inherit;padding:40px 44px;border-bottom:var(--B);position:relative;overflow:hidden;transition:.2s}
+.pc{display:block;text-decoration:none;color:inherit;padding:0;border-bottom:var(--B);position:relative;overflow:hidden;transition:.2s;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end}
 .pc:last-child{border-bottom:none}
+.pc-content{padding:32px 40px;position:relative;z-index:1}
+.pc:not(.dark):not(.budpro){background:var(--paper)}
+.pc:not(.dark):not(.budpro) .pc-content{padding:32px 40px}
 .pc:hover{background:var(--off)}
 .pc.dark{background:var(--ink);color:var(--paper)}
 .pc.dark:hover{background:#181818}
@@ -89,7 +92,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:var(-
 }
 .pc-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(135deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.65) 100%);
+  background:linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.5) 60%, rgba(0,0,0,.2) 100%);
   z-index:0;
 }
 .pc.feat.dark > *:not(.pc-overlay){position:relative;z-index:1}
@@ -106,7 +109,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:var(-
   color:var(--paper);
 }
 .pc.budpro:hover{background-color:#0a0a0a}
-.pc.budpro .pc-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.60) 100%);z-index:0}
+.pc.budpro .pc-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.5) 60%, rgba(0,0,0,.2) 100%);z-index:0}
 .pc.budpro > *:not(.pc-overlay){position:relative;z-index:1}
 .pc.budpro .pc-title{color:#fff}
 .pc.budpro .pc-desc{color:#ccc}
@@ -211,7 +214,8 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   .sec-head{padding:28px 20px;flex-direction:column;align-items:flex-start;gap:8px}
   .pgrid{grid-template-columns:1fr}
   .pgrid-r{border-left:none;border-top:var(--B);grid-template-rows:auto}
-  .pc{padding:28px 20px;min-height:auto}
+  .pc{min-height:260px}
+  .pc-content{padding:24px 20px}
   .pc-arr{bottom:20px;right:20px}
   .about{grid-template-columns:1fr}
   .ab-left{padding:36px 20px;border-right:none;border-bottom:var(--B)}
@@ -314,30 +318,36 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
     <a href="https://www.perfect4you.foo/" target="_blank" class="pc feat dark">
       <div class="pc-overlay"></div>
       <div class="pc-ghost">01</div>
-      <div class="pc-num">01 / FEATURED · LIVE</div>
-      <div class="pc-title">PERFECT4YOU —<br>B2B WHOLESALE</div>
-      <p class="pc-desc">E-commerce for Ukrainian wholesale food supplier. Catalog, admin panel, order forms — client edits everything themselves.</p>
-      <div class="pc-tags"><div class="pt">Next.js</div><div class="pt">PostgreSQL</div><div class="pt">Supabase</div><div class="pt">Vercel</div></div>
-      <div class="pc-live">perfect4you.foo</div>
-      <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      <div class="pc-content">
+        <div class="pc-num">01 / FEATURED · LIVE</div>
+        <div class="pc-title">PERFECT4YOU —<br>B2B WHOLESALE</div>
+        <p class="pc-desc">E-commerce for Ukrainian wholesale food supplier. Catalog, admin panel, order forms — client edits everything themselves.</p>
+        <div class="pc-tags"><div class="pt">Next.js</div><div class="pt">PostgreSQL</div><div class="pt">Supabase</div><div class="pt">Vercel</div></div>
+        <div class="pc-live">perfect4you.foo</div>
+        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      </div>
     </a>
     <div class="pgrid-r">
       <a href="http://miya-demo.me/budpro/" target="_blank" class="pc budpro">
         <div class="pc-overlay"></div>
         <div class="pc-ghost">02</div>
-        <div class="pc-num">02</div>
-        <div class="pc-title">BUDPRO —<br>CONSTRUCTION</div>
-        <p class="pc-desc">Site for Ukrainian crew in Warsaw. Bilingual UA/PL, portfolio, contact forms.</p>
-        <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">UA/PL</div></div>
-        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+        <div class="pc-content">
+          <div class="pc-num">02</div>
+          <div class="pc-title">BUDPRO —<br>CONSTRUCTION</div>
+          <p class="pc-desc">Site for Ukrainian crew in Warsaw. Bilingual UA/PL, portfolio, contact forms.</p>
+          <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">UA/PL</div></div>
+          <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+        </div>
       </a>
       <div class="pc dark">
         <div class="pc-ghost">03</div>
-        <div class="pc-num">03</div>
-        <div class="pc-title">LUNA BEAUTY —<br>SALON WARSAW</div>
-        <p class="pc-desc">Salon site with online booking, service catalog, staff profiles.</p>
-        <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">Booking</div></div>
-        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+        <div class="pc-content">
+          <div class="pc-num">03</div>
+          <div class="pc-title">LUNA BEAUTY —<br>SALON WARSAW</div>
+          <p class="pc-desc">Salon site with online booking, service catalog, staff profiles.</p>
+          <div class="pc-tags"><div class="pt">HTML/CSS/JS</div><div class="pt">Booking</div></div>
+          <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+        </div>
       </div>
     </div>
   </div>
@@ -345,20 +355,24 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
     <div class="pgrid-r" style="border-left:none;border-right:var(--B)">
       <div class="pc dark">
         <div class="pc-ghost">04</div>
-        <div class="pc-num">04</div>
-        <div class="pc-title">TELEGRAM<br>BOOKING BOT</div>
-        <p class="pc-desc">Automated bookings for barbershops & salons. Schedule, reminders, payment.</p>
-        <div class="pc-tags"><div class="pt">Python</div><div class="pt">Telegram API</div></div>
-        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+        <div class="pc-content">
+          <div class="pc-num">04</div>
+          <div class="pc-title">TELEGRAM<br>BOOKING BOT</div>
+          <p class="pc-desc">Automated bookings for barbershops & salons. Schedule, reminders, payment.</p>
+          <div class="pc-tags"><div class="pt">Python</div><div class="pt">Telegram API</div></div>
+          <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+        </div>
       </div>
     </div>
     <div class="pc feat">
       <div class="pc-ghost">05</div>
-      <div class="pc-num">05</div>
-      <div class="pc-title">QR TICKETS —<br>NIGHTCLUB</div>
-      <p class="pc-desc">Two-bot ticketing system. Crypto-signed QR codes, desktop door scanner, revenue tracking.</p>
-      <div class="pc-tags"><div class="pt">Python</div><div class="pt">PyQt6</div><div class="pt">Cryptography</div></div>
-      <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      <div class="pc-content">
+        <div class="pc-num">05</div>
+        <div class="pc-title">QR TICKETS —<br>NIGHTCLUB</div>
+        <p class="pc-desc">Two-bot ticketing system. Crypto-signed QR codes, desktop door scanner, revenue tracking.</p>
+        <div class="pc-tags"><div class="pt">Python</div><div class="pt">PyQt6</div><div class="pt">Cryptography</div></div>
+        <div class="pc-arr"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="2" y1="12" x2="12" y2="2"/><polyline points="5,2 12,2 12,9"/></svg></div>
+      </div>
     </div>
   </div>
 </section>
