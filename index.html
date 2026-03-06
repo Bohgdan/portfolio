@@ -78,6 +78,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:var(-
 .bc:hover{transform:scale(1.015);z-index:2}
 .bc-feat{grid-column:span 2;min-height:360px}
 .bc-wide{grid-column:span 2}
+.bc-full{grid-column:span 3}
 .bc-num{position:absolute;top:24px;left:32px;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--red);z-index:1}
 .bc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.65) 50%,rgba(0,0,0,.25) 100%);z-index:1}
 .bc-body{position:relative;z-index:1}
@@ -180,7 +181,7 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
   .svc:last-child{border-bottom:none}
   .sec-head{padding:28px 20px;flex-direction:column;align-items:flex-start;gap:8px}
   .bento{grid-template-columns:1fr;gap:1px}
-  .bc-feat,.bc-wide{grid-column:span 1}
+  .bc-feat,.bc-wide,.bc-full{grid-column:span 1}
   .bc{min-height:240px;padding:24px 20px}
   .bc-num{top:16px;left:20px}
   .about{grid-template-columns:1fr}
@@ -310,7 +311,7 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
         <div class="bc-tags"><span class="bc-tag">HTML/CSS/JS</span><span class="bc-tag">Booking</span></div>
       </div>
     </div>
-    <div class="bc">
+    <div class="bc bc-wide">
       <div class="bc-num">04</div>
       <div class="bc-body">
         <div class="bc-label">AUTOMATION</div>
@@ -319,7 +320,7 @@ footer{background:var(--ink);display:flex;align-items:stretch;min-height:56px;bo
         <div class="bc-tags"><span class="bc-tag">Python</span><span class="bc-tag">Telegram API</span></div>
       </div>
     </div>
-    <a class="bc bc-wide">
+    <a class="bc bc-full">
       <div class="bc-num">05</div>
       <div class="bc-body">
         <div class="bc-label">TICKETING</div>
