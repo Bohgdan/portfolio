@@ -79,7 +79,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:var(-
 .bc-feat{grid-column:span 2;min-height:360px}
 .bc-wide{grid-column:span 2}
 .bc-num{position:absolute;top:24px;left:32px;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--red);z-index:1}
-.bc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.4) 55%,transparent 100%);z-index:0}
+.bc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.65) 50%,rgba(0,0,0,.25) 100%);z-index:1}
 .bc-body{position:relative;z-index:1}
 .bc-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
 .bc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.8vw,38px);line-height:1.05;margin:0 0 10px;color:#fff}
@@ -92,9 +92,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:var(-
 .bc:not(.dark) .bc-label{color:var(--red)}
 .bc:not(.dark) .bc-tag{border-color:rgba(0,0,0,.2);color:#666}
 .bc:not(.dark){background-color:var(--paper);background-image:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23000' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M0 40L40 0M-10 10L10-10M30 50L50 30'/%3E%3C/g%3E%3C/svg%3E")}
-.bc.dark{background-color:var(--ink);background-size:cover;background-position:center}
-.bc-01{background-image:url("https://image.thum.io/get/width/1280/https://www.perfect4you.foo/")}
-.bc-02{background-image:url("https://image.thum.io/get/width/1280/http://miya-demo.me/budpro/")}
+.bc.dark{background-color:var(--ink)}
+.bc.dark::before{content:'';position:absolute;inset:-10px;background-size:cover;background-position:center;filter:blur(5px);z-index:0}
+.bc-01::before{background-image:url("https://image.thum.io/get/width/1280/https://www.perfect4you.foo/")}
+.bc-02::before{background-image:url("https://image.thum.io/get/width/1280/http://miya-demo.me/budpro/")}
+.bc.dark .bc-title{text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.bc.dark .bc-desc{text-shadow:0 1px 6px rgba(0,0,0,.5)}
 
 
 /* RED STRIP */
